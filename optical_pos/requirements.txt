@@ -1,0 +1,15 @@
+PySide6
+SQLAlchemy
+alembic
+pandas
+seaborn
+matplotlib
+reportlab
+openpyxl
+python-dotenv
+black
+ruff
+mypy
+pytest
+pytest-qt
+bcrypt
