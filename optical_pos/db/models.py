@@ -1,4 +1,5 @@
 import datetime
+from datetime import timezone
 from sqlalchemy import (
     Column,
     Integer,
@@ -70,7 +71,7 @@ class Sale(Base):
     discount = Column(Float, default=0)
     tax = Column(Float, default=0)
     payment_type = Column(String)
-    date = Column(DateTime, default=datetime.datetime.utcnow)
+    date = Column(DateTime, default=lambda: datetime.datetime.now(timezone.utc))
 
     customer = relationship("Customer", back_populates="sales")
     sale_items = relationship("SaleItem", back_populates="sale")
@@ -92,6 +93,6 @@ class InventoryMovement(Base):
     product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
     qty_change = Column(Integer, nullable=False)
     reason = Column(String) # e.g., 'sale', 'purchase', 'return', 'adjustment'
-    date = Column(DateTime, default=datetime.datetime.utcnow)
+    date = Column(DateTime, default=lambda: datetime.datetime.now(timezone.utc))
 
     product = relationship("Product", back_populates="inventory_movements")
