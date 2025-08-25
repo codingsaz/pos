@@ -1,0 +1,22 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# SQLite databases
+*.db
+*.sqlite3
+
+# Distribution / build directories
+/dist/
+/build/
+/target/
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+/env.bak/
+/venv.bak/
