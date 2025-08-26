@@ -2,6 +2,7 @@ import datetime
 from sqlalchemy.orm import Session
 from .database import SessionLocal, init_db
 from .models import User, Customer, Supplier, Product, Prescription
+from optical_pos.services.auth_service import get_password_hash
 
 def seed_data():
     """
@@ -18,7 +19,8 @@ def seed_data():
     print("Seeding database with initial data...")
 
     # Create users
-    admin_user = User(username="admin", password_hash="hashed_password_placeholder", role="Admin")
+    admin_password_hash = get_password_hash("admin123")
+    admin_user = User(username="admin", password_hash=admin_password_hash, role="Admin")
     db.add(admin_user)
 
     # Create a supplier

@@ -22,6 +22,7 @@ class NavSidebar(QWidget):
             ("Dashboard", "dashboard"),
             ("Customers", "customers"),
             ("Products", "products"),
+            ("Prescriptions", "prescriptions"),
             ("Sales", "sales"),
             ("Reports", "reports"),
             ("Inventory", "inventory"),
