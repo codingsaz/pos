@@ -17,6 +17,7 @@ from optical_pos.ui.screens.prescriptions import PrescriptionScreen
 from optical_pos.ui.screens.sales_pos import SalesScreen
 from optical_pos.ui.screens.inventory import InventoryScreen
 from optical_pos.ui.screens.reports import ReportsScreen
+from optical_pos.ui.screens.settings import SettingsScreen
 
 class MainWindow(QMainWindow):
     def __init__(self, session_info: dict):
@@ -49,7 +50,7 @@ class MainWindow(QMainWindow):
             "sales": SalesScreen(),
             "reports": ReportsScreen(),
             "inventory": InventoryScreen(),
-            "settings": self._create_placeholder_page("Settings")
+            "settings": SettingsScreen()
         }
         for widget in self.pages.values():
             self.content_stack.addWidget(widget)
