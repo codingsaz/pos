@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 from optical_pos.db import models
 
-def create_product(db: Session, name: str, category: str, price: float, stock_qty: int, supplier_id: Optional[int] = None) -> models.Product:
+def create_product(db: Session, name: str, category: str, price: float, stock_qty: int, supplier_id: Optional[int] = None, image_path: Optional[str] = None) -> models.Product:
     """
     Creates a new product in the database.
     """
@@ -11,7 +11,8 @@ def create_product(db: Session, name: str, category: str, price: float, stock_qt
         category=category,
         price=price,
         stock_qty=stock_qty,
-        supplier_id=supplier_id
+        supplier_id=supplier_id,
+        image_path=image_path
     )
     db.add(db_product)
     db.commit()
@@ -30,7 +31,7 @@ def list_products(db: Session, skip: int = 0, limit: int = 100) -> List[models.P
     """
     return db.query(models.Product).offset(skip).limit(limit).all()
 
-def update_product(db: Session, product_id: int, name: str, category: str, price: float, stock_qty: int) -> Optional[models.Product]:
+def update_product(db: Session, product_id: int, name: str, category: str, price: float, stock_qty: int, image_path: Optional[str] = None) -> Optional[models.Product]:
     """
     Updates a product's details.
     """
@@ -40,6 +41,8 @@ def update_product(db: Session, product_id: int, name: str, category: str, price
         db_product.category = category
         db_product.price = price
         db_product.stock_qty = stock_qty
+        if image_path is not None:
+            db_product.image_path = image_path
         db.commit()
         db.refresh(db_product)
     return db_product

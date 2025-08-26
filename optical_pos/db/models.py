@@ -46,6 +46,7 @@ class Product(Base):
     price = Column(Float, nullable=False)
     stock_qty = Column(Integer, default=0)
     supplier_id = Column(Integer, ForeignKey("suppliers.id"))
+    image_path = Column(String, nullable=True)
 
     supplier = relationship("Supplier", back_populates="products")
     sale_items = relationship("SaleItem", back_populates="product")
