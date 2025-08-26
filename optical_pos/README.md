@@ -14,17 +14,35 @@ This is a desktop application for managing an optical store, built with PySide6.
 
 ## Getting Started
 
-### Prerequisites
+### Easy Run (Recommended)
 
-- Python 3.11+
+Simply run the script for your operating system. It will create a virtual environment, install dependencies, and launch the application automatically.
 
-### Installation
+-   On **Windows**: Double-click `run.bat` or run it from the command prompt:
+    ```sh
+    run.bat
+    ```
+-   On **macOS/Linux**: Make the script executable first, then run it:
+    ```sh
+    chmod +x run.sh
+    ./run.sh
+    ```
 
-1. Clone the repository
-2. Create a virtual environment: `python -m venv .venv`
-3. Activate the virtual environment: `source .venv/bin/activate` (on Linux/macOS) or `.venv\Scripts\activate` (on Windows)
-4. Install the dependencies: `pip install -r requirements.txt`
-5. Run the application: `python app.py`
+### Manual Installation
+
+If you prefer to set up the environment manually:
+
+1.  **Clone the repository**
+2.  **Create a virtual environment**: `python -m venv .venv`
+3.  **Activate the virtual environment**:
+    -   Windows: `call .venv\Scripts\activate.bat`
+    -   macOS/Linux: `source .venv/bin/activate`
+4.  **Install the dependencies**: `pip install -r requirements.txt`
+5.  **Run the application**: `python app.py`
+
+The default admin login is:
+-   **Username**: `admin`
+-   **Password**: `admin123`
 
 ## Building from Source (Windows)
 
