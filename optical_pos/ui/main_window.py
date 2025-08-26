@@ -11,6 +11,7 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import QFile, QTextStream
 from optical_pos.ui.widgets.nav_sidebar import NavSidebar
 from optical_pos.ui.screens.dashboard import DashboardScreen
+from optical_pos.ui.screens.customers import CustomerScreen
 
 class MainWindow(QMainWindow):
     def __init__(self, session_info: dict):
@@ -37,7 +38,7 @@ class MainWindow(QMainWindow):
         # Create and add pages to the stack
         self.pages = {
             "dashboard": DashboardScreen(),
-            "customers": self._create_placeholder_page("Customers"),
+            "customers": CustomerScreen(),
             "products": self._create_placeholder_page("Products"),
             "sales": self._create_placeholder_page("Sales"),
             "reports": self._create_placeholder_page("Reports"),
