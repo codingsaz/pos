@@ -13,11 +13,11 @@ fi
 source .venv/bin/activate
 
 echo "--- Installing dependencies from requirements.txt... ---"
-pip install -r requirements.txt
+pip install -r optical_pos/requirements.txt
 if [ $? -ne 0 ]; then
     echo "Error: Failed to install dependencies."
     exit 1
 fi
 
 echo "--- Starting Optical POS Application... ---"
-python app.py
+python optical_pos/app.py

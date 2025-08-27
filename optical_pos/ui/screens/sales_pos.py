@@ -89,8 +89,9 @@ class SalesScreen(QWidget):
         self.cart_table_view.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         left_layout.addWidget(self.cart_table_view)
 
-        right_layout = QVBoxLayout()
-        right_layout.setFixedWidth(300)
+        right_panel_widget = QWidget()
+        right_panel_widget.setFixedWidth(300)
+        right_layout = QVBoxLayout(right_panel_widget)
 
         summary_form = QFormLayout()
         self.subtotal_label = QLabel("$0.00")
@@ -115,7 +116,7 @@ class SalesScreen(QWidget):
         right_layout.addWidget(self.finalize_button)
 
         self.main_layout.addLayout(left_layout, 2)
-        self.main_layout.addLayout(right_layout, 1)
+        self.main_layout.addWidget(right_panel_widget, 1)
 
     def add_product_to_cart(self):
         product_id_str = self.product_input.text()

@@ -66,7 +66,7 @@ class DashboardScreen(QWidget):
         ax = fig.add_subplot(111)
 
         # Use seaborn to plot
-        sns.barplot(x='Day', y='Sales', data=df, ax=ax, palette="viridis")
+        sns.barplot(x='Day', y='Sales', data=df, ax=ax, palette="viridis", hue='Day', legend=False)
 
         ax.set_title("Weekly Sales")
         ax.set_xlabel("Day of Week")

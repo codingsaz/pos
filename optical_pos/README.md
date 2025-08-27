@@ -18,11 +18,11 @@ This is a desktop application for managing an optical store, built with PySide6.
 
 Simply run the script for your operating system. It will create a virtual environment, install dependencies, and launch the application automatically.
 
--   On **Windows**: Double-click `run.bat` or run it from the command prompt:
+-   On **Windows**: From the project's root directory, double-click `run.bat` or run it from the command prompt:
     ```sh
     run.bat
     ```
--   On **macOS/Linux**: Make the script executable first, then run it:
+-   On **macOS/Linux**: From the project's root directory, make the script executable first, then run it:
     ```sh
     chmod +x run.sh
     ./run.sh
