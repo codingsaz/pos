@@ -86,6 +86,7 @@ class ProductScreen(QWidget):
         db_session = SessionLocal()
         try:
             products = product_service.list_products(db_session)
+            print(f"DEBUG: Service returned products: {products}") # DEBUG
             self.table_model = ProductTableModel(products)
             self.table_view.setModel(self.table_model)
         finally:

@@ -91,6 +91,7 @@ class CustomerScreen(QWidget):
         db_session = SessionLocal()
         try:
             customers = customer_service.list_customers(db_session)
+            print(f"DEBUG: Service returned customers: {customers}") # DEBUG
             self.table_model = CustomerTableModel(customers)
             self.table_view.setModel(self.table_model)
         finally:

@@ -83,6 +83,7 @@ class PrescriptionScreen(QWidget):
             # This is inefficient for large numbers of prescriptions.
             # A better approach would be to fetch for a selected customer.
             prescriptions = db_session.query(Prescription).all()
+            print(f"DEBUG: Service returned prescriptions: {prescriptions}") # DEBUG
             self.table_model = PrescriptionTableModel(prescriptions)
             self.table_view.setModel(self.table_model)
         finally:
