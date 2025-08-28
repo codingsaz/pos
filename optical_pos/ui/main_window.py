@@ -69,8 +69,12 @@ class MainWindow(QMainWindow):
         self.sidebar.main_layout.addWidget(theme_label)
         self.sidebar.main_layout.addWidget(self.theme_combo)
 
+        # --- Set Object Names for QSS ---
+        self.sidebar.setObjectName("NavSidebar")
+        self.content_stack.setObjectName("ContentStack")
+
         # Set initial theme
-        self.switch_theme("Light")
+        self.switch_theme("Dark") # Default to dark theme
 
     def _create_placeholder_page(self, name: str) -> QWidget:
         """Helper to create a placeholder widget for a screen."""
@@ -87,14 +91,22 @@ class MainWindow(QMainWindow):
             print(f"Switched to {screen_id} screen.")
 
     def switch_theme(self, theme_name: str):
-        """Loads and applies a QSS theme file."""
+        """Loads and applies a base QSS file plus a theme-specific file."""
+        base_style_sheet = ""
+        theme_style_sheet = ""
+
+        try:
+            with open("optical_pos/ui/styles.qss", "r") as f:
+                base_style_sheet = f.read()
+        except FileNotFoundError:
+            print("Warning: Base stylesheet not found.")
+
         theme_filename = f"optical_pos/ui/theme/{theme_name.lower()}.qss"
         try:
             with open(theme_filename, "r") as f:
-                style_sheet = f.read()
-                QApplication.instance().setStyleSheet(style_sheet)
-                print(f"Applied {theme_name} theme.")
+                theme_style_sheet = f.read()
         except FileNotFoundError:
             print(f"Warning: Theme file not found at {theme_filename}")
-            # Apply a default empty stylesheet to clear any previous theme
-            QApplication.instance().setStyleSheet("")
+
+        QApplication.instance().setStyleSheet(base_style_sheet + theme_style_sheet)
+        print(f"Applied {theme_name} theme.")

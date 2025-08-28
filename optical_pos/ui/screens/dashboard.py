@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QGridLayout, QLabel
+from optical_pos.ui.widgets.card import CardWidget
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import seaborn as sns
@@ -14,9 +15,9 @@ class DashboardScreen(QWidget):
         title_label.setStyleSheet("font-size: 24px; font-weight: bold;")
         self.main_layout.addWidget(title_label)
 
-        # --- Stats Grid ---
-        stats_layout = QGridLayout()
-        self.main_layout.addLayout(stats_layout)
+        # --- Main content layout ---
+        content_layout = QGridLayout()
+        self.main_layout.addLayout(content_layout)
 
         # Placeholder stats
         stats = {
@@ -26,34 +27,36 @@ class DashboardScreen(QWidget):
             "Pending Orders": "5",
         }
 
-        positions = [(i, j) for i in range(2) for j in range(2)]
-        for (i, j), (key, value) in zip(positions, stats.items()):
-            stat_widget = self._create_stat_widget(key, value)
-            stats_layout.addWidget(stat_widget, i, j)
+        positions = [(0, 0), (0, 1), (1, 0), (1, 1)]
+        for (r, c), (key, value) in zip(positions, stats.items()):
+            stat_card = self._create_stat_widget(key, value)
+            content_layout.addWidget(stat_card, r, c)
 
         # --- Chart ---
-        chart_canvas = self._create_sales_chart()
-        self.main_layout.addWidget(chart_canvas)
+        chart_card = self._create_sales_chart_card()
+        content_layout.addWidget(chart_card, 0, 2, 2, 1) # Span 2 rows, 1 column
 
-    def _create_stat_widget(self, title: str, value: str) -> QWidget:
-        """Helper to create a styled widget for a single statistic."""
-        widget = QWidget()
-        layout = QVBoxLayout(widget)
+    def _create_stat_widget(self, title: str, value: str) -> CardWidget:
+        """Helper to create a styled card for a single statistic."""
+        card = CardWidget()
+        layout = QVBoxLayout(card)
 
         title_label = QLabel(title)
-        title_label.setStyleSheet("font-size: 14px; color: #888;")
+        title_label.setStyleSheet("font-size: 14px;") # Style from QSS now
 
         value_label = QLabel(value)
-        value_label.setStyleSheet("font-size: 20px; font-weight: bold;")
+        value_label.setStyleSheet("font-size: 28px; font-weight: bold;") # Style from QSS now
 
         layout.addWidget(title_label)
         layout.addWidget(value_label)
 
-        widget.setStyleSheet("background-color: #fff; border-radius: 5px; padding: 10px;")
-        return widget
+        return card
 
-    def _create_sales_chart(self) -> FigureCanvas:
-        """Creates a sample sales chart using matplotlib and seaborn."""
+    def _create_sales_chart_card(self) -> CardWidget:
+        """Creates a card containing a sample sales chart."""
+        card = CardWidget()
+        layout = QVBoxLayout(card)
+
         # Sample data
         data = {
             'Day': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -63,6 +66,7 @@ class DashboardScreen(QWidget):
 
         # Create a matplotlib figure
         fig = Figure(figsize=(5, 3), dpi=100)
+        fig.patch.set_alpha(0) # Make figure background transparent
         ax = fig.add_subplot(111)
 
         # Use seaborn to plot
@@ -71,8 +75,17 @@ class DashboardScreen(QWidget):
         ax.set_title("Weekly Sales")
         ax.set_xlabel("Day of Week")
         ax.set_ylabel("Sales ($)")
+
+        # Style matplotlib to match the dark/light theme better
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        ax.tick_params(colors='#e0e0e0') # Assuming dark theme for now
+        ax.yaxis.label.set_color('#e0e0e0')
+        ax.xaxis.label.set_color('#e0e0e0')
+        ax.title.set_color('#e0e0e0')
+
         fig.tight_layout()
 
-        # Create the canvas widget to display the figure
         canvas = FigureCanvas(fig)
-        return canvas
+        layout.addWidget(canvas)
+        return card

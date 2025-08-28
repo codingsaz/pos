@@ -1,0 +1,73 @@
+/* styles.qss - Base styles for both themes */
+
+/* --- General Window --- */
+QMainWindow {
+    background-color: #f5f5fa; /* Default to light theme background */
+}
+
+/* --- Sidebar --- */
+#NavSidebar {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+}
+
+#NavSidebar QPushButton {
+    border: none;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* --- Content Area --- */
+#ContentStack {
+    background-color: #f5f5fa;
+    padding: 10px;
+}
+
+/* --- Reusable Card Widget --- */
+#CardWidget {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+/* --- General Widgets --- */
+QLabel {
+    font-size: 13px;
+}
+
+QLineEdit, QComboBox, QDateEdit {
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+QTableView {
+    border: 1px solid #e0e0e0;
+    gridline-color: #e0e0e0;
+    background-color: #ffffff;
+}
+
+QHeaderView::section {
+    background-color: #f5f5fa;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: bold;
+}
+
+QPushButton {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+}
+
+QPushButton#PrimaryButton {
+    background-color: #4a47a3;
+    color: #ffffff;
+}

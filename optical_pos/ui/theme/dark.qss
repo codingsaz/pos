@@ -1,34 +1,72 @@
-/* dark.qss */
-QWidget {
-    background-color: #2e2e2e;
-    color: #f0f0f0;
-    font-family: Arial, sans-serif;
+/* dark.qss - Dark theme overrides */
+
+QMainWindow {
+    background-color: #1a1a2e;
 }
 
-QPushButton {
-    background-color: #555;
-    border: 1px solid #666;
-    padding: 5px 10px;
-    border-radius: 4px;
-    color: #f0f0f0;
+#NavSidebar {
+    background-color: #1f1f3a;
+    border-right: 1px solid #2a2a4a;
 }
 
-QPushButton:hover {
-    background-color: #666;
+#NavSidebar QPushButton {
+    color: #e0e0e0;
 }
 
-QPushButton:pressed {
-    background-color: #444;
+#NavSidebar QPushButton:hover {
+    background-color: #2a2a4a;
 }
 
-QLineEdit {
-    border: 1px solid #666;
-    padding: 5px;
-    border-radius: 4px;
-    background-color: #444;
-    color: #f0f0f0;
+#NavSidebar QPushButton:checked {
+    background-color: #03e9f4;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+
+#ContentStack {
+    background-color: #1a1a2e;
+}
+
+#CardWidget {
+    background-color: #1f1f3a;
+    border: 1px solid #2a2a4a;
 }
 
 QLabel {
-    color: #f0f0f0;
+    color: #e0e0e0;
+}
+
+QLineEdit, QComboBox, QDateEdit {
+    border: 1px solid #2a2a4a;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+QTableView {
+    border: 1px solid #2a2a4a;
+    gridline-color: #2a2a4a;
+    background-color: #1f1f3a;
+    color: #e0e0e0;
+}
+
+QHeaderView::section {
+    background-color: #1a1a2e;
+    border-bottom: 1px solid #2a2a4a;
+    color: #e0e0e0;
+}
+
+QPushButton {
+    background-color: #2a2a4a;
+    color: #e0e0e0;
+    border: 1px solid #1f1f3a;
+}
+
+QPushButton:hover {
+    background-color: #3a3a5a;
+}
+
+QPushButton#PrimaryButton {
+    background-color: #03e9f4;
+    color: #1a1a2e;
+    font-weight: bold;
 }
